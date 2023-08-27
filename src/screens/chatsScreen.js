@@ -9,7 +9,7 @@ const ChatsScreens = () => {
  
   return (
     <View>
-      <LogoutButton></LogoutButton>
+      {/* <LogoutButton></LogoutButton> */}
       <FlatList
         data={chats}
         renderItem={({item})=><ChatListItem chat={item}/>}
