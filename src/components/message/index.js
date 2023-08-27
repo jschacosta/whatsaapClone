@@ -14,11 +14,17 @@ const Message = ({message}) => {
     <View 
         style={[
             styles.container,
-            {backgroundColor: isMyMessage()? 'green': 'white'},
+            {backgroundColor: isMyMessage()? '#2F2F2F': '#A4BAF6'},
             {alignSelf:isMyMessage()?'flex-end':'flex-start'},
         ]}
         >
-      <Text>{message.text}</Text>
+      <Text
+        style={[
+            {color: isMyMessage()? 'white': 'black'},
+        ]}
+      >
+        {message.text}
+      </Text>
       <Text style={styles.time}>{dayjs(message.createdAt).fromNow(true)}</Text>
     </View>
   )

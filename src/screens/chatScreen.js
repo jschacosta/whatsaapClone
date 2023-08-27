@@ -1,18 +1,20 @@
-import { View, Text, ImageBackground, StyleSheet, FlatList } from 'react-native'
+import { View, Text, ImageBackground, StyleSheet, FlatList, KeyboardAvoidingView } from 'react-native'
 import bg from '../../assets/images/BG.png'
 import Message from '../components/message'
 import messages from '../../assets/data/messages.json'
+import InputBox from '../components/imputBox'
 
 const ChatScreen = () => {
   return (
- <ImageBackground source={bg} style={styles.bg}>
-  <FlatList
-    data={messages} 
-    renderItem={({item})=> <Message message={item}/>}
-    style={styles.list}
-    //inverted
-  />
- </ImageBackground>
+      <ImageBackground source={bg} style={styles.bg}>
+        <FlatList
+          data={messages} 
+          renderItem={({item})=> <Message message={item}/>}
+          style={styles.list}
+          //inverted
+        />
+      <InputBox/>
+      </ImageBackground>
   )
 }
 const styles = StyleSheet.create({
