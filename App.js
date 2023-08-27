@@ -1,5 +1,7 @@
+// rnfe
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
+import ChatsScreen from './src/screens/chatsScreen';
 import ChatScreen from './src/screens/chatScreen';
 
 
