@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ChatsScreen from "../screens/chatsScreen";
 import NotImplementedScreen from "../screens/notImplementedScreen";
+import SettingScreen from "../screens/settingScreen";
 import {AntDesign, MaterialIcons, Ionicons, Entypo,MaterialCommunityIcons} from '@expo/vector-icons';
 import { Auth } from 'aws-amplify';
 
@@ -53,26 +54,34 @@ const MainTabNavigator = () => {
     <Tab.Screen
         name="Chats"
         component={ChatsScreen}
-        options={{
+        options={({navigation})=>({
             tabBarIcon: ({ color, size }) => (
             <Ionicons name="ios-chatbubbles-sharp" size={size} color={color} />
             ),
             headerRight: () => (
-                <MaterialCommunityIcons
-                  name="logout"
-                  onPress={logOut}
-                  size={30}
-                  color={"black"}
-                  style={{ marginRight: 15 }}
+                <Entypo
+                    name="new-message"
+                    onPress={()=>navigation.navigate('Contacts')}
+                    size={25}
+                    color={"black"}
+                    style={{ marginRight: 15 }}
                 />
-              ),
-        }}
-
-        
+            ),
+            headerLeft: () => (
+                <MaterialCommunityIcons
+                    name="logout"
+                    size={30}
+                    color={"black"}
+                    style={{ marginLeft: 15 }}
+                />
+            ),
+            
+        })
+    }
     />
     <Tab.Screen
         name="Settings"
-        component={NotImplementedScreen}
+        component={SettingScreen}
         options={{
             tabBarIcon: ({ color, size }) => (
             <Ionicons name="settings-outline" size={size} color={color} />
