@@ -26,7 +26,8 @@ const ChatScreen = () => {
 }
 const styles = StyleSheet.create({
   bg:{
-    flex:1
+    flex:1,
+    //backgroundColor:'#d9d9d9'
   },
   list:{
 
