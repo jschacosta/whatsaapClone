@@ -12,6 +12,8 @@ import awsconfig from './src/aws-exports'
 Amplify.configure({...awsconfig, Analitycs:{disabled:true}})
 
 function App() {
+  //const authUser = await Auth.currentAuthenticatedUser({bypassCache: true});
+  //console.log(authUser)
   return (
     <View style={styles.container}>
       <Navigator/>
