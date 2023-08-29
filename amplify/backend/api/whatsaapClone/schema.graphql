@@ -4,7 +4,7 @@ type Message @model @auth(rules: [{allow: public}]) {
   userID: ID! @index(name: "byUser")
   chatroomID: ID!
   @index(
-    name: "byChatRoom"
+    name: "byChatroom"
     sortKeyFields: ["createdAt"]
     queryField: "listMessagesByChatRoom"
   )
