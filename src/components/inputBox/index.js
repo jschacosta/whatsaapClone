@@ -7,11 +7,11 @@ import { createMessage, updateChatroom } from '../../graphql/mutations';
 const InputBox = ({chatRoom}) => {
     //state Data
     const [text,setText]= useState('');
-    console.log('el chatRoom',chatRoom)
+    console.log('chatRoom en input',chatRoom)
     const chatroomID=chatRoom?.id || null
     console.log('el chatRoomID',chatroomID)
     const onSend =async()=>{
-        console.warn('Sending a new message: ', text)
+        //console.warn('Sending a new message: ', text)
         setText('')
         const authUser = await Auth.currentAuthenticatedUser()
         const newMessage ={

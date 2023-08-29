@@ -12,6 +12,8 @@ const ChatListItem = ({chat}) =>{
     const navigation = useNavigation();
     console.log("la data", chat.users.items)
     const [user, setUser]=useState([]) 
+
+    
     useEffect(()=>{
         const fetchAuth = async () => {
             const authUser = await Auth.currentAuthenticatedUser();
