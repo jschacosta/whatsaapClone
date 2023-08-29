@@ -3,12 +3,12 @@ type Message @model @auth(rules: [{allow: public}]) {
   text: String!
   userID: ID! @index(name: "byUser")
   chatroomID: ID!
-  createdAt:AWSDateTime!
   @index(
     name: "byChatRoom"
     sortKeyFields: ["createdAt"]
     queryField: "listMessagesByChatRoom"
   )
+  createdAt:AWSDateTime!
 }
 
 type Chatroom @model @auth(rules: [{allow: public}]) {
