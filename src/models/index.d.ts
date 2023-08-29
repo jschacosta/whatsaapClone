@@ -9,26 +9,26 @@ import { LazyLoading, LazyLoadingDisabled, AsyncCollection, AsyncItem } from "@a
 type EagerMessage = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Message, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
+    readOnlyFields: 'updatedAt';
   };
   readonly id: string;
   readonly text: string;
   readonly userID: string;
   readonly chatroomID: string;
-  readonly createdAt?: string | null;
+  readonly createdAt: string;
   readonly updatedAt?: string | null;
 }
 
 type LazyMessage = {
   readonly [__modelMeta__]: {
     identifier: ManagedIdentifier<Message, 'id'>;
-    readOnlyFields: 'createdAt' | 'updatedAt';
+    readOnlyFields: 'updatedAt';
   };
   readonly id: string;
   readonly text: string;
   readonly userID: string;
   readonly chatroomID: string;
-  readonly createdAt?: string | null;
+  readonly createdAt: string;
   readonly updatedAt?: string | null;
 }
 
@@ -47,6 +47,8 @@ type EagerChatroom = {
   readonly Messages?: (Message | null)[] | null;
   readonly users?: (UserChatroom | null)[] | null;
   readonly LastMessage?: Message | null;
+  readonly name?: string | null;
+  readonly image?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   readonly chatroomLastMessageId?: string | null;
@@ -61,6 +63,8 @@ type LazyChatroom = {
   readonly Messages: AsyncCollection<Message>;
   readonly users: AsyncCollection<UserChatroom>;
   readonly LastMessage: AsyncItem<Message | undefined>;
+  readonly name?: string | null;
+  readonly image?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   readonly chatroomLastMessageId?: string | null;

@@ -98,6 +98,8 @@ export const onCreateChatroom = /* GraphQL */ `
         _lastChangedAt
         __typename
       }
+      name
+      image
       createdAt
       updatedAt
       _version
@@ -157,6 +159,8 @@ export const onUpdateChatroom = /* GraphQL */ `
         _lastChangedAt
         __typename
       }
+      name
+      image
       createdAt
       updatedAt
       _version
@@ -216,6 +220,8 @@ export const onDeleteChatroom = /* GraphQL */ `
         _lastChangedAt
         __typename
       }
+      name
+      image
       createdAt
       updatedAt
       _version
@@ -405,6 +411,8 @@ export const onCreateUserChatroom = /* GraphQL */ `
           _lastChangedAt
           __typename
         }
+        name
+        image
         createdAt
         updatedAt
         _version
@@ -476,6 +484,8 @@ export const onUpdateUserChatroom = /* GraphQL */ `
           _lastChangedAt
           __typename
         }
+        name
+        image
         createdAt
         updatedAt
         _version
@@ -547,6 +557,8 @@ export const onDeleteUserChatroom = /* GraphQL */ `
           _lastChangedAt
           __typename
         }
+        name
+        image
         createdAt
         updatedAt
         _version

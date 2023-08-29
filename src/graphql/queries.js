@@ -106,16 +106,18 @@ export const messagesByUserID = /* GraphQL */ `
     }
   }
 `;
-export const messagesByChatroomID = /* GraphQL */ `
-  query MessagesByChatroomID(
+export const listMessagesByChatRoom = /* GraphQL */ `
+  query ListMessagesByChatRoom(
     $chatroomID: ID!
+    $createdAt: ModelStringKeyConditionInput
     $sortDirection: ModelSortDirection
     $filter: ModelMessageFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    messagesByChatroomID(
+    listMessagesByChatRoom(
       chatroomID: $chatroomID
+      createdAt: $createdAt
       sortDirection: $sortDirection
       filter: $filter
       limit: $limit
@@ -188,6 +190,8 @@ export const getChatroom = /* GraphQL */ `
         _lastChangedAt
         __typename
       }
+      name
+      image
       createdAt
       updatedAt
       _version
@@ -229,6 +233,8 @@ export const listChatrooms = /* GraphQL */ `
           _lastChangedAt
           __typename
         }
+        name
+        image
         createdAt
         updatedAt
         _version
@@ -280,6 +286,8 @@ export const syncChatrooms = /* GraphQL */ `
           _lastChangedAt
           __typename
         }
+        name
+        image
         createdAt
         updatedAt
         _version
@@ -449,6 +457,8 @@ export const getUserChatroom = /* GraphQL */ `
           _lastChangedAt
           __typename
         }
+        name
+        image
         createdAt
         updatedAt
         _version
@@ -501,6 +511,8 @@ export const listUserChatrooms = /* GraphQL */ `
         userId
         chatroom {
           id
+          name
+          image
           createdAt
           updatedAt
           _version
@@ -553,6 +565,8 @@ export const syncUserChatrooms = /* GraphQL */ `
         userId
         chatroom {
           id
+          name
+          image
           createdAt
           updatedAt
           _version
@@ -607,6 +621,8 @@ export const userChatroomsByChatroomId = /* GraphQL */ `
         userId
         chatroom {
           id
+          name
+          image
           createdAt
           updatedAt
           _version
@@ -661,6 +677,8 @@ export const userChatroomsByUserId = /* GraphQL */ `
         userId
         chatroom {
           id
+          name
+          image
           createdAt
           updatedAt
           _version

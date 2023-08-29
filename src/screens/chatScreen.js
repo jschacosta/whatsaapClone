@@ -11,7 +11,7 @@ import Message from '../components/message'
 import messages from '../../assets/data/messages.json'
 import InputBox from '../components/inputBox'  
 import { API,graphqlOperation } from 'aws-amplify'
-import {getChatroom} from '../graphql/queries'
+import {getChatroom, listMessagesByChatRoom} from '../graphql/queries'
  
 const ChatScreen = () => {
   console.log("----------------------------------------------------------------")
@@ -19,24 +19,40 @@ const ChatScreen = () => {
   const navigation =useNavigation() 
   console.log("CHAT-SCREEN->",route)
   const [chatRoom,setChatRoom] = useState(null)
+  const [messages,setMessages] = useState([])
   const chatroomID = route.params.id
   console.log('idRoom',chatroomID)
+  //fetch Chat room
   useEffect(() => { 
     // Agrega un arreglo de dependencias vacío para ejecutar esto solo una vez
     navigation.setOptions({ title: route.params.name });
     
     API.graphql(graphqlOperation(getChatroom,{id:chatroomID})).then(
-      result=> setChatRoom(result.data?.getChatroom) 
+      result=>{
+        setChatRoom(result.data?.getChatroom) 
+        //delete this after querying messages directly
+        setMessages(result.data?.getChatroom?.Messages?.items) 
+      } 
     )
   }, []); 
 
   console.log('chatRoom',chatRoom) 
-
+  //fetch for messages
+  useEffect(() => { 
+    API.graphql(
+      graphqlOperation(listMessagesByChatRoom, {
+        chatroomID,
+        sortDirection: "DESC",
+      })
+    ).then((result) => {
+      setMessages(result.data?.listMessagesByChatRoom?.items);
+    });
+  }, []); 
 
   return (
       <ImageBackground source={bg3} style={styles.bg}>
         <FlatList
-          data={chatRoom?.Messages?.items} 
+          data={messages} 
           renderItem={({item})=> <Message message={item}/>}
           style={styles.list}
           inverted
