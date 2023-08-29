@@ -16,6 +16,7 @@ export const listChatRooms = /* GraphQL */ `
                 }
             }
             createdAt
+            updatedAt
             id
             LastMessage {
                 id

@@ -9,14 +9,23 @@ import { listChatRooms } from './queries'
 
 const ChatsScreens = () => {
   console.log("chatsScreen")   
-  const [chatRoom, setChatRoom]=useState([]);  
+  const [chatRoom, setChatRooms]=useState([]);  
   useEffect(()=>{  
     
     const fetchChatRooms = async () => { 
       const authUser = await Auth.currentAuthenticatedUser();
       const response = await API.graphql(graphqlOperation(listChatRooms,{id:authUser.attributes.sub}))
       console.log('la respuesta3',response.data.getUser.Chatrooms.items[0].chatroom.users.items)
-      setChatRoom(response.data.getUser.Chatrooms.items)
+
+      const rooms = response.data.getUser.Chatrooms.items;
+      const sortedRooms = rooms.sort(
+        (r1, r2) =>
+          new Date(r2.chatroom.updatedAt) - new Date(r1.chatroom.updatedAt)
+      );
+
+      setChatRooms(sortedRooms);
+      console.log("buenardo", chatRoom)
+
     };
     fetchChatRooms()
   },[])
