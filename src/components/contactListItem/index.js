@@ -23,17 +23,18 @@ const ContactListItem = ({ user }) => {
     console.log("idChatRoom",newChatRoom.id,user.id)
 
     // Add the clicked user to chatRrom
-    let creado=await API.graphql(graphqlOperation(createUserChatroom,{
+    let user1=await API.graphql(graphqlOperation(createUserChatroom,{
       input:{chatroomId:newChatRoom.id, userId:user.id}
     }))
-    console.log("creado", creado)
+    console.log("user1", user1)
     // Add the auth to the chatRoom
     const authUser= await Auth.currentAuthenticatedUser();
     console.log("auth", authUser.attributes.sub)
-    await API.graphql(
+    const user2=await API.graphql(
       graphqlOperation(createUserChatroom,{
         input:{chatroomId:newChatRoom.id, userId:authUser.attributes.sub}
       }))
+    console.log("user2",user2)
     //navigate to de newly created chatRoom
     navigation.navigate("Chat", {id:newChatRoom.id})
   }  

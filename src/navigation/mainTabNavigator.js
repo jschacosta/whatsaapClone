@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import ChatsScreen from "../screens/chatsScreen";
+import ChatsScreen from "../screens/chatsScreen/chatsScreen";
 import NotImplementedScreen from "../screens/notImplementedScreen";
 import SettingScreen from "../screens/settingScreen";
 import {AntDesign, MaterialIcons, Ionicons, Entypo,MaterialCommunityIcons} from '@expo/vector-icons';

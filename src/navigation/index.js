@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import ChatsScreen from '../screens/chatsScreen'
+import ChatsScreen from '../screens/chatsScreen/chatsScreen'
 import ChatScreen from '../screens/chatScreen'
 import ContactsScreen from "../screens/contactsScreen";
 import MainTabNavigator from "./mainTabNavigator";
