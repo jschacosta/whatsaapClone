@@ -2,6 +2,7 @@ import { Text, Image, StyleSheet, Pressable, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { API,Auth, graphqlOperation } from 'aws-amplify'; 
 import { createChatroom, createUserChatroom } from '../../graphql/mutations';
+import {getCommonChatRoomWithUser} from '../../services/chatRoomService'
 
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -11,8 +12,15 @@ dayjs.extend(relativeTime);
 const ContactListItem = ({ user }) => {
   const navigation=useNavigation()
   onPress = async() =>{
-    console.log("press")
+    console.log("press",user.id)
     //check is already have a chatRoom with the user
+    const existingChatroom = await getCommonChatRoomWithUser(user.id);
+    console.log('prueba',existingChatroom)
+    if(existingChatroom){
+      console.log("existing",existingChatroom)
+      navigation.navigate("Chat", {id:existingChatroom.id})
+      return;
+    }
     //create a new chatRoom
     const newChatRoomData = await  API.graphql(graphqlOperation(createChatroom,{input:{}}))
     console.log("newChat", newChatRoomData)

@@ -11,7 +11,7 @@ dayjs.extend(relativeTime);
 const ChatListItem = ({chat}) =>{
     const navigation = useNavigation();
     console.log("la data", chat.users.items)
-    const [user, setUser]=useState([]);
+    const [user, setUser]=useState([]) 
     useEffect(()=>{
         const fetchAuth = async () => {
             const authUser = await Auth.currentAuthenticatedUser();
@@ -42,9 +42,9 @@ const ChatListItem = ({chat}) =>{
             <View style={styles.content}>
                 <View style={styles.row}>
                     <Text  style={styles.name} numberOfLines={1}>{user?.name} </Text>
-                    <Text  style={styles.subTitle}>{dayjs(chat.lastMessage?.createdAt).fromNow()}</Text>
+                    <Text  style={styles.subTitle}>{dayjs(chat.LastMessage?.createdAt).fromNow()}</Text>
                 </View>
-                <Text  style={styles.name} numberOfLines={2}>{chat.lastMessage?.text}</Text>
+                <Text  style={styles.name} numberOfLines={2}>{chat.LastMessage?.text}</Text>
             </View>
         </Pressable>
     )

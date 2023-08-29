@@ -1,29 +1,47 @@
 import { View, Text, ImageBackground, StyleSheet, FlatList, KeyboardAvoidingView } from 'react-native'
 import {useRoute, useNavigation} from '@react-navigation/native'
- import { useEffect } from 'react'
+import { useEffect,useState } from 'react'
 
 import bg from '../../assets/images/BG.png'
+import bg2 from '../../assets/images/BG2.jpeg'
+import bg3 from '../../assets/images/BG3.jpeg'
+import bg4 from '../../assets/images/BG4.jpeg'
+import bg5 from '../../assets/images/BG5.jpeg'
 import Message from '../components/message' 
 import messages from '../../assets/data/messages.json'
-import InputBox from '../components/imputBox'  
+import InputBox from '../components/inputBox'  
+import { API,graphqlOperation } from 'aws-amplify'
+import {getChatroom} from '../graphql/queries'
  
 const ChatScreen = () => {
+  console.log("----------------------------------------------------------------")
   const route = useRoute()
-  console.log('route ',route)
-  const navigation =useNavigation()   
+  const navigation =useNavigation() 
+  console.log("CHAT-SCREEN->",route)
+  const [chatRoom,setChatRoom] = useState(null)
+  const chatroomID = route.params.id
+  console.log('idRoom',chatroomID)
   useEffect(() => { 
+    // Agrega un arreglo de dependencias vacío para ejecutar esto solo una vez
     navigation.setOptions({ title: route.params.name });
-  }, []); // Agrega un arreglo de dependencias vacío para ejecutar esto solo una vez
+    
+    API.graphql(graphqlOperation(getChatroom,{id:chatroomID})).then(
+      result=> setChatRoom(result.data?.getChatroom) 
+    )
+  }, []); 
+
+  console.log('chatRoom',chatRoom) 
+
 
   return (
-      <ImageBackground source={bg} style={styles.bg}>
+      <ImageBackground source={bg3} style={styles.bg}>
         <FlatList
-          data={messages} 
+          data={chatRoom?.Messages?.items} 
           renderItem={({item})=> <Message message={item}/>}
           style={styles.list}
-          //inverted
+          inverted
         />
-      <InputBox/>
+      <InputBox chatRoom={chatRoom}/>
       </ImageBackground>
   )
 }

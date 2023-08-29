@@ -5,23 +5,23 @@ import ChatListItem from '../../components/chatListItem'
 import { API, graphqlOperation, Auth } from 'aws-amplify'
 import { listChatRooms } from './queries'
 
-
+ 
 
 const ChatsScreens = () => {
-  console.log("chatsScreen")
-  const [chatRoom, setChatRoom]=useState([]);
-  useEffect(()=>{
+  console.log("chatsScreen")   
+  const [chatRoom, setChatRoom]=useState([]);  
+  useEffect(()=>{  
     
     const fetchChatRooms = async () => { 
       const authUser = await Auth.currentAuthenticatedUser();
       const response = await API.graphql(graphqlOperation(listChatRooms,{id:authUser.attributes.sub}))
-      console.log('la respuesta',response.data.getUser.Chatrooms.items[0].chatroom.users.items)
+      console.log('la respuesta3',response.data.getUser.Chatrooms.items[0].chatroom.users.items)
       setChatRoom(response.data.getUser.Chatrooms.items)
     };
     fetchChatRooms()
   },[])
  
-  return (
+  return ( 
     <View>
       <FlatList
         data={chatRoom}
