@@ -67,14 +67,14 @@ const MainTabNavigator = () => {
                     style={{ marginRight: 15 }}
                 />
             ),
-            headerLeft: () => (
-                <MaterialCommunityIcons
-                    name="logout"
-                    size={30}
-                    color={"black"}
-                    style={{ marginLeft: 15 }}
-                />
-            ),
+            // headerLeft: () => (
+            //     <MaterialCommunityIcons
+            //         name="logout"
+            //         size={30}
+            //         color={"black"}
+            //         style={{ marginLeft: 15 }}
+            //     />
+            // ),
             
         })
     }
