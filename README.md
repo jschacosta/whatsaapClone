@@ -1,4 +1,4 @@
-# Reactive Native -> Whatsaap Clone
+# React Native -> Whatsaap Clone
 
 Simple overview of use/purpose.
 
