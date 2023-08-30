@@ -44,7 +44,7 @@ const ContactListItem = ({ user }) => {
       }))
     console.log("user2",user2)
     //navigate to de newly created chatRoom
-    navigation.navigate("Chat", {id:newChatRoom.id})
+    navigation.navigate("Chat", {id:newChatRoom.id,name:user.name})
   }  
 
   return (
