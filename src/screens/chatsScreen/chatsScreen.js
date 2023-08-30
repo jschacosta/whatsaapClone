@@ -4,14 +4,17 @@ import { useEffect, useState } from 'react'
 import ChatListItem from '../../components/chatListItem'
 import { API, graphqlOperation, Auth } from 'aws-amplify'
 import { listChatRooms } from './queries'
+import { useNavigation } from '@react-navigation/native';
 
  
 
 const ChatsScreens = () => {
   console.log("chatsScreen")   
+  const navigation = useNavigation();
   const [chatRoom, setChatRooms]=useState([]);  
   const [loading, setLoading] = useState(false);
   const fetchChatRooms = async () => { 
+    console.log("cargando")
     setLoading(true)
     const authUser = await Auth.currentAuthenticatedUser();
     const response = await API.graphql(graphqlOperation(listChatRooms,{id:authUser.attributes.sub}))
@@ -30,6 +33,14 @@ const ChatsScreens = () => {
   useEffect(()=>{    
     fetchChatRooms()
   },[])
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      setChatRooms([]);
+      fetchChatRooms(); // Actualizar chats al enfocar la pantalla
+    });
+
+    return unsubscribe;
+  }, [navigation]);
  
   return ( 
     <View>

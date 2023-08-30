@@ -30,7 +30,6 @@ const ChatScreen = () => {
   console.log("CHAT-SCREEN->", route);
   const [chatRoom, setChatRoom] = useState(null);
   const [messages, setMessages] = useState([]);
-  const [loading, setLoading] = useState([]);
 
   const chatroomID = route.params.id;
   console.log("idRoom", chatroomID);
